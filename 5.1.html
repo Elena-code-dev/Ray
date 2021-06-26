@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Игра угадай число</title>
+</head>
+
+<body>
+	<p>Сейчас мы с вами реализуем игру угадай число. В этой игре компьютер загадывает число от 1 до 100. В инпут на экране игрок вводит число от 1 до 100, пытаясь угадать, что же загадал компьютер.
+
+		Если игрок ввел число, меньше загаданного, компьютер должен написать 'введите число побольше', а если введено больше загаданного, то, соответственно, компьютер должен написать 'введите число поменьше'.</p><hr>
+	<p id="message">Введите число от 1 до 100.</p>
+	<input type="text" id="input">
+	<script>
+		"use strict"
+
+		let input = document.querySelector("#input");
+		let message = document.querySelector("#message");
+		input.focus();
+
+		//Получаем свободное число в диапозоне от min до max
+		let getRandomInt = (min, max) => {
+			return Math.floor(Math.random() * (max - min +  1))  + min;
+		}
+		let randomNam = getRandomInt(1, 100);
+
+		input.addEventListener("blur", function() {
+			let userNumber = input.value;
+
+			if(userNumber == randomNam) {
+				message.innerHTML = "Поздравляем! Вы выиграли!";
+				} else if (userNumber > randomNam) {
+				message.innerHTML = "Введите число поменьше";
+				input.value = "";
+				input.focus();
+				} else {
+				message.innerHTML = "Введите число побольше";
+				input.value = "";
+				input.focus();
+			}
+		});
+
+			
+
+	</script>
+</body>
+
+</html>
